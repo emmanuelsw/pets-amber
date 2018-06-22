@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-sm-11">
+    <h2>Pets</h2>
+  </div>
+  <div class="col-sm-1">
+    <a class="btn btn-success btn-xs" href="/pets/new">New</a>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Breed</th>
+        <th>Age</th>
+        <th>Actions</th>
+      </tr>
+    <tbody>
+    <%- pets.each do |pet| %>
+      <tr>
+        <td><%= pet.name %></td>
+        <td><%= pet.breed %></td>
+        <td><%= pet.age %></td>
+        <td>
+          <span>
+            <%= link_to("read", "/pets/#{pet.id}", class: "btn btn-success btn-xs") -%>
+            <%= link_to("edit", "/pets/#{pet.id}/edit", class: "btn btn-success btn-xs") -%>
+            <%= link_to("delete", "/pets/#{pet.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-xs") -%>
+          </span>
+        </td>
+      </tr>
+    <%- end %>
+    </tbody>
+  </table>
+</div>
